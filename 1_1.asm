@@ -1,0 +1,24 @@
+CODE	SEGMENT
+	ASSUME	CS:CODE
+START:	mov	al,10010000B
+		mov	dx,0646h
+		out dx,al
+A1:		mov	dx,0640h
+		in 	al,dx
+		MOV	DX,0642H
+		CMP	AL,0FFH
+		JZ	A2
+		AND	AL,01H
+		CMP	AL,01H
+		JZ	A3
+		MOV	AL,0FH
+		OUT	DX,AL
+		JMP	A1
+A3:		MOV	AL,0F0H
+		OUT	DX,AL
+		JMP	A1
+A2:		MOV	AL,00H
+		OUT	DX,AL
+		HLT		
+CODE	ENDS
+		END START
